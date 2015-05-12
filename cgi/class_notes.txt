@@ -1,0 +1,8 @@
+
+python -m CGIHTTPServer must run from the /cgi directory
+
+directories must be in /cgi/cgi-bin/scripts order
+
+must set chmod a+x to all scripts.py
+
+Also note that under /cgi - any file starting with index will be served up
