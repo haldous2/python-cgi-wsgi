@@ -38,7 +38,7 @@ def application(environ, start_response):
     path = environ.get('PATH_INFO', '')
 
     # Only need to see what is right after book/(-->here<--)
-    matches = re.search("/book/(id[0-9])", path)
+    matches = re.search("/book/(id[0-9]+)", path)
     if matches:
         matched = matches.groups()
     else:
@@ -47,14 +47,15 @@ def application(environ, start_response):
     status = "200 OK"
     headers = [('Content-type', 'text/html')]
     #start_response(status, headers)
-
     #return ["<h1>No Progress Yet</h1> path:%s parameters:%s match:%s" % (path, parameters, matched)]
 
     try:
-        if matched:
-            strOut = book(matched[0])
-        else:
+
+        if matched is None:
             strOut = books()
+        else:
+            strOut = book(matched[0])
+
     except NameError:
         status = "404 Page Not Found"
         strOut = ["<h1>Page Not Found!</h1>"]
