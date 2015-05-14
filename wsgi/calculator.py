@@ -75,25 +75,25 @@ def application(environ, start_response):
 
             if oper == "add":
                 strAns = add(var1, var2)
-                strOut = ["operation add: var1:%s var2:%s answer:%s" % (var1, var2, strAns)]
+                strOut = ["%s + %s = %s" % (var1, var2, strAns)]
             if oper == "subtract":
                 strAns = subtract(var1, var2)
-                strOut = ["operation subtract: var1:%s var2:%s answer:%s" % (var1, var2, strAns)]
+                strOut = ["%s - %s = %s" % (var1, var2, strAns)]
             if oper == "multiply":
                 strAns = multiply(var1, var2)
-                strOut = ["operation multiply: var1:%s var2:%s answer:%s" % (var1, var2, strAns)]
+                strOut = ["%s / %s = %s" % (var1, var2, strAns)]
             if oper == "divide":
                 strAns = divide(var1, var2)
-                strOut = ["operation divide: var1:%s var2:%s answer:%s" % (var1, var2, strAns)]
+                strOut = ["%s * %s = %s" % (var1, var2, strAns)]
 
         else:
 
             if oper is None:
-                strOut = ["missing operator"]
+                strOut = ["missing operator - /add, /subract, /multiply or /divide."]
             if oper is not None and var1 is None and var2 is None:
-                strOut = ["missing operands"]
+                strOut = ["missing operands - e.g. /add/x/y where x & y are the numeric operands"]
             if oper is not None and var1 is not None and var2 is None:
-                strOut = ["missing last operand"]
+                strOut = ["missing last operand - e.g. /add/x/y where y is the last numeric operand"]
 
     except ZeroDivisionError:
         status = "501 Not Implemented"
